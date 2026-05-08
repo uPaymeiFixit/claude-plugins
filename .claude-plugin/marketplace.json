@@ -1,0 +1,38 @@
+{
+    "name": "uPaymeiFixit-claude-plugins",
+    "owner": {
+        "name": "uPaymeiFixit",
+        "url": "https://github.com/uPaymeiFixit"
+    },
+    "metadata": {
+        "description": "A personal marketplace of generic Claude Code skills.",
+        "version": "0.0.1",
+        "homepage": "https://github.com/uPaymeiFixit/claude-plugins"
+    },
+    "plugins": [
+        {
+            "name": "commit-and-mr",
+            "description": "Commit the current changes, push to a branch, and open a GitLab merge request with reviewers picked from git blame.",
+            "source": "./plugins/commit-and-mr",
+            "strict": false
+        },
+        {
+            "name": "notify-blame",
+            "description": "Notify git blame authors on Slack when you modify their code.",
+            "source": "./plugins/notify-blame",
+            "strict": false
+        },
+        {
+            "name": "person-to-user-map",
+            "description": "Maps people to user IDs / names across platforms.",
+            "source": "./plugins/person-to-user-map",
+            "strict": false
+        },
+        {
+            "name": "write-claude-tooling",
+            "description": "Token-efficient authoring rules for LLM-consumed docs and Claude Code configuration.",
+            "source": "./plugins/write-claude-tooling",
+            "strict": false
+        }
+    ]
+}
