@@ -46,7 +46,7 @@ Both reference files stay in sync automatically.
 
 ## Expected directory layout
 
-Assumes your repos are cloned in a `~/git/<Org>/<Platform>/<remote-path>` tree — i.e. the local path mirrors the remote. A GitLab repo at `gitlab.example.com/team/api`, for instance, lives at `~/git/<Org>/Gitlab/team/api`.
+Assumes your repos are cloned in a `~/git/<Org>/<Platform>/<remote-path>` tree — i.e. the local path mirrors the remote. A GitLab repo at `gitlab.example.com/team/api`, for instance, lives at `~/git/<Org>/Gitlab/team/api`. [git-sync](https://github.com/uPaymeiFixit/git-sync) sets up and maintains exactly this layout — recommended if you don't already mirror your remotes locally.
 
 A new workspace is created at `~/git/<Org>/Gitlab/<username>/<name>`, mirroring where it will live on GitLab, so a folder-level git-sync keeps it in step. The defaults target `~/git/Paciolan/Gitlab`; point them elsewhere if your tree differs.
 
