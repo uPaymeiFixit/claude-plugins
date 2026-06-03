@@ -50,6 +50,8 @@ Assumes your repos are cloned in a `~/git/<Org>/<Platform>/<remote-path>` tree â
 
 A new workspace is created at `~/git/<Org>/Gitlab/<username>/<name>`, mirroring where it will live on GitLab, so a folder-level git-sync keeps it in step. The defaults target `~/git/Paciolan/Gitlab`; point them elsewhere if your tree differs.
 
+Because everyone mirrors the same tree, repo references are stored as paths **relative to the workspace** (e.g. `../../ballena/cold-brew`) rather than absolute. A teammate who clones one of your workspaces gets working references with no path rewriting â€” no `/Users/<you>` prefix to break. Repos outside the mirrored tree fall back to absolute paths (and aren't portable).
+
 ## Requirements
 
 `glab` (the GitLab CLI) authenticated to your GitLab host, and SSH access to it.

@@ -22,6 +22,8 @@ import argparse, json, os, re, subprocess, sys
 from pathlib import Path
 
 PRUNE = {".git", "node_modules", ".venv", "vendor", "dist", "build", ".next", ".cache"}
+# Repos under this root get portable workspace-relative refs; anything outside stays absolute.
+MIRROR_ROOT = Path(os.environ.get("CW_MIRROR_ROOT", "~/git")).expanduser()
 
 
 def find_repos(root: Path) -> list[Path]:
@@ -85,22 +87,36 @@ def display_names(paths: list[str]) -> list[tuple[str, str]]:
     return out
 
 
+def to_ref(ws: Path, abspath: str) -> str:
+    """Workspace-relative ref when both sit in the mirrored tree (portable across machines); else absolute."""
+    p = Path(abspath)
+    try:
+        if p.is_relative_to(MIRROR_ROOT) and ws.is_relative_to(MIRROR_ROOT):
+            return os.path.relpath(p, ws)
+    except (ValueError, OSError):
+        pass
+    return str(p)
+
+
 def write_machine_files(ws: Path, name: str, paths: list[str]) -> None:
+    """paths are absolute; written as workspace-relative refs where portable, absolute otherwise."""
     (ws / ".claude").mkdir(parents=True, exist_ok=True)
     (ws / ".claude" / "settings.json").write_text(json.dumps(
-        {"permissions": {"additionalDirectories": paths}}, indent=2) + "\n")
+        {"permissions": {"additionalDirectories": [to_ref(ws, p) for p in paths]}}, indent=2) + "\n")
     folders = [{"name": f"✦ {name}", "path": "."}] + \
-              [{"name": link, "path": p} for link, p in display_names(paths)]
+              [{"name": link, "path": to_ref(ws, ap)} for link, ap in display_names(paths)]
     (ws / f"{name}.code-workspace").write_text(
         json.dumps({"folders": folders, "settings": {}}, indent=2) + "\n")
 
 
 def current_paths(ws: Path) -> list[str]:
+    """Read additionalDirectories and return ABSOLUTE paths (stored entries may be workspace-relative)."""
     settings = ws / ".claude" / "settings.json"
     if not settings.exists():
         print(json.dumps({"error": "not_a_workspace", "path": str(ws)}, indent=2))
         sys.exit(6)
-    return list(json.loads(settings.read_text()).get("permissions", {}).get("additionalDirectories", []))
+    entries = json.loads(settings.read_text()).get("permissions", {}).get("additionalDirectories", [])
+    return [str((p if (p := Path(e)).is_absolute() else ws / p).resolve()) for e in entries]
 
 
 def git_out(repo: Path, *args: str) -> str | None:
