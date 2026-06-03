@@ -17,6 +17,12 @@
             "strict": false
         },
         {
+            "name": "create-workspace",
+            "description": "Stitch several existing repos into one Claude Code context for cross-repo feature work, via additionalDirectories + a VS Code .code-workspace, then publish it to GitLab.",
+            "source": "./plugins/create-workspace",
+            "strict": false
+        },
+        {
             "name": "notify-blame",
             "description": "Notify git blame authors on Slack when you modify their code.",
             "source": "./plugins/notify-blame",
