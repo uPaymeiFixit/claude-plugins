@@ -73,6 +73,8 @@ Mark optional ones explicitly.>
 
 ## Authoring the SKILL.md
 
+Skim the [official skills documentation](https://code.claude.com/docs/en/skills.md) before authoring — it covers frontmatter fields, file discovery, and the conventions you're expected to follow (e.g. referencing bundled scripts via `${CLAUDE_SKILL_DIR}` rather than hard-coded paths).
+
 Skills in this repo are LLM-consumed, not human-consumed. Apply the [write-claude-tooling](plugins/write-claude-tooling/skills/write-claude-tooling/README.md) rules: only document what Claude wouldn't otherwise do, point to scripts over describing them, keep the body tight. The README explains the skill to a human; the SKILL.md tells Claude how to run it.
 
 ### Frontmatter conventions
