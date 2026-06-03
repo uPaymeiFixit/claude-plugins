@@ -8,6 +8,7 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 |---|---|
 | [commit-and-mr](plugins/commit-and-mr/skills/commit-and-mr/) | Commit, push, and open a GitLab merge request with blame-derived reviewers. |
 | [create-workspace](plugins/create-workspace/skills/create-workspace/) | Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab. |
+| [leeroy-jenkins](plugins/leeroy-jenkins/skills/leeroy-jenkins/) | Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs. |
 | [notify-blame](plugins/notify-blame/skills/notify-blame/) | DM every git blame author on Slack when you touch their code, with a personalized summary. |
 | [person-to-user-map](plugins/person-to-user-map/skills/person-to-user-map/) | Cache mapping people to their Slack/GitLab/Jira IDs. Used by other skills to avoid repeated API lookups. |
 | [write-claude-tooling](plugins/write-claude-tooling/skills/write-claude-tooling/) | Token-efficient authoring rules for SKILL.md, CLAUDE.md, slash commands, and other LLM-consumed docs. |

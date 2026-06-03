@@ -23,6 +23,12 @@
             "strict": false
         },
         {
+            "name": "leeroy-jenkins",
+            "description": "Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs.",
+            "source": "./plugins/leeroy-jenkins",
+            "strict": false
+        },
+        {
             "name": "notify-blame",
             "description": "Notify git blame authors on Slack when you modify their code.",
             "source": "./plugins/notify-blame",
