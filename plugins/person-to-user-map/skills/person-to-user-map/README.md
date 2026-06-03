@@ -2,8 +2,6 @@
 
 A shared, on-disk cache mapping people to their identifiers across Slack, GitLab, and Jira. Used by every other skill that needs to look up a user — checked first, hits the platform APIs only on a miss.
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ### Old way
 
 ```mermaid

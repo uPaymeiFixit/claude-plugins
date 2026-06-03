@@ -39,8 +39,6 @@ Plugin READMEs generally follow this shape. See [notify-blame](plugins/notify-bl
 
 <One- or two-sentence tagline — what it does, in plain language. Same wording as marketplace.json.>
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ### Old way
 <mermaid flowchart of the manual steps the skill replaces>
 

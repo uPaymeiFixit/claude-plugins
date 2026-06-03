@@ -2,8 +2,6 @@
 
 Stitch several existing repos into one Claude Code context for cross-repo feature work — without copying or symlinking them. The workspace is a small versioned git repo that *references* the others, so Claude (CLI **and** the VS Code extension) sees them all, and VS Code shows each as its own folder with working Source Control.
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ## Why not just open the folders / symlink them?
 
 ```mermaid

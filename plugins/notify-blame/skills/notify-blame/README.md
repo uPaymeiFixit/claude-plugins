@@ -2,8 +2,6 @@
 
 DM every git blame author whose code was modified in the current branch, link them to the merge request, and include a personalized summary of what changed in their code.
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ### Old way
 
 ```mermaid

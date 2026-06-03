@@ -2,8 +2,6 @@
 
 Commit the working tree, push to a branch, and open a GitLab merge request — with reviewers picked from `git blame` and the related Jira issue updated, all in one command.
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ### Old way
 
 ```mermaid

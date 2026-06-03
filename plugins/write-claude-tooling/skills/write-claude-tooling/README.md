@@ -2,8 +2,6 @@
 
 Token-efficient authoring rules for Claude Code configuration — the meta-skill that governs how every other skill, command, hook, and `CLAUDE.md` in this repo gets written. Not-quite-[Caveman](https://github.com/JuliusBrussee/caveman/blob/main/README.md), but for input tokens instead of output.
 
-**Maintainer:** [@uPaymeiFixit](https://github.com/uPaymeiFixit)
-
 ### Old way
 
 ```mermaid
