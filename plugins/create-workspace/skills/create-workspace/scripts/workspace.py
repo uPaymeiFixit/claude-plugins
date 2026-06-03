@@ -13,9 +13,10 @@ Subcommands:
   remove --dir D --repo X [--repo Y ...]
 
 Repos resolve as: an existing dir path is used as-is; a bare name is fuzzy-found
-under --search-root (default ~/git/Paciolan), skipping existing workspaces.
+under --search-root (default ~/git), skipping existing workspaces.
 
-Exit: 0 ok | 2 usage | 3 ambiguous name (candidates in JSON) | 4 no match | 6 not a workspace
+Exit: 0 ok | 2 usage | 3 unresolved names (problems[] in JSON) |
+4 repo not in workspace (remove) | 6 not a workspace | 7 no remote host
 """
 from __future__ import annotations
 import argparse, json, os, re, shutil, subprocess, sys
@@ -59,20 +60,22 @@ def resolve(arg: str, search_root: Path) -> tuple[Path | None, list[Path]]:
     return None, sorted(set(exact + sub))
 
 
-def resolve_all(args: list[str], search_root: Path) -> tuple[list[str] | None, int, dict]:
-    """Resolve every arg; on failure return (None, exit_code, error_dict)."""
-    out: list[str] = []
+def resolve_batch(args: list[str], search_root: Path) -> tuple[list[str], list[dict]]:
+    """Resolve every arg, collecting ALL problems at once (so the caller fixes them in one pass)."""
+    paths: list[str] = []
+    problems: list[dict] = []
     for arg in args:
         path, candidates = resolve(arg, search_root)
         if path is None:
-            err = {"error": "ambiguous" if candidates else "no_match", "arg": arg}
+            p = {"arg": arg, "error": "ambiguous" if candidates else "no_match"}
             if candidates:
-                err["candidates"] = [str(c) for c in candidates]
+                p["candidates"] = [str(c) for c in candidates]
             else:
-                err["search_root"] = str(search_root)
-            return None, (3 if candidates else 4), err
-        out.append(str(path))
-    return out, 0, {}
+                p["search_root"] = str(search_root)
+            problems.append(p)
+        else:
+            paths.append(str(path))
+    return paths, problems
 
 
 def display_names(paths: list[str]) -> list[tuple[str, str]]:
@@ -156,9 +159,9 @@ def cmd_init(a) -> int:
     if ws.exists() and any(ws.iterdir()):
         print(json.dumps({"error": "workspace_exists", "path": str(ws)}, indent=2))
         return 5
-    paths, code, err = resolve_all(a.repo, search_root)
-    if paths is None:
-        print(json.dumps(err, indent=2)); return code
+    paths, problems = resolve_batch(a.repo, search_root)
+    if problems:
+        print(json.dumps({"error": "unresolved", "problems": problems}, indent=2)); return 3
     ws.mkdir(parents=True, exist_ok=True)
     write_machine_files(ws, a.name, paths)
     (ws / ".gitignore").write_text(".DS_Store\n")
@@ -171,9 +174,9 @@ def cmd_init(a) -> int:
 def cmd_add(a) -> int:
     ws = Path(a.dir).expanduser().resolve()
     paths = current_paths(ws)
-    new, code, err = resolve_all(a.repo, Path(a.search_root).expanduser())
-    if new is None:
-        print(json.dumps(err, indent=2)); return code
+    new, problems = resolve_batch(a.repo, Path(a.search_root).expanduser())
+    if problems:
+        print(json.dumps({"error": "unresolved", "problems": problems}, indent=2)); return 3
     for p in new:
         if p not in paths:
             paths.append(p)
@@ -222,14 +225,14 @@ def main() -> int:
     i.add_argument("--namespace", required=True, help="GitLab namespace = local sub-dir under workspace-root")
     i.add_argument("--repo", action="append", default=[], required=True)
     i.add_argument("--workspace-root", default="~/git/Paciolan/Gitlab")
-    i.add_argument("--search-root", default="~/git/Paciolan")
+    i.add_argument("--search-root", default="~/git")
     i.set_defaults(fn=cmd_init)
 
     for name in ("add", "remove"):
         s = sub.add_parser(name)
         s.add_argument("--dir", required=True)
         s.add_argument("--repo", action="append", default=[], required=True)
-        s.add_argument("--search-root", default="~/git/Paciolan")
+        s.add_argument("--search-root", default="~/git")
         s.set_defaults(fn=cmd_add if name == "add" else cmd_remove)
 
     h = sub.add_parser("host")
