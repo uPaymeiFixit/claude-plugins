@@ -51,8 +51,8 @@ Skip this section's invocation block if the skill isn't user-invocable —
 see person-to-user-map.>
 
 ## What it does
-<Numbered list. Each step starts with a verb. Reference the actual
-script names and MCP tools the skill calls.>
+<Numbered list. Each step starts with a verb. Optionally reference the
+script names and MCP tools the skill calls — or keep it user-facing.>
 
 ## Use cases
 <2–4 H3 sub-sections, each with a code block and one-paragraph explanation.
@@ -69,6 +69,7 @@ Mark optional ones explicitly.>
 - **Old way / New way diagrams are the hook.** They sell the skill in one screen. Skip them only for non-user-invocable utility skills (e.g. `person-to-user-map` uses a cache-flow diagram instead).
 - **Cross-link sibling skills** with relative paths (`../../../<other-plugin>/skills/<other-skill>/README.md`) when one skill calls another.
 - **Show, don't tell.** Use code blocks for invocations, blockquotes for trigger phrases, tables/bullets over prose.
+- **Lean READMEs are fine.** Not every README needs every section. A user-facing README may omit script-name references and `Use cases`, use `Requirements` in place of `Tooling`, or run a single explanatory diagram instead of Old way / New way — when that reads better for a human deciding whether to use the skill. `create-workspace` is the lean example; `commit-and-mr` the full-template one.
 
 ## Authoring the SKILL.md
 

@@ -18,7 +18,7 @@
         },
         {
             "name": "create-workspace",
-            "description": "Stitch several existing repos into one Claude Code context for cross-repo feature work, via additionalDirectories + a VS Code .code-workspace, then publish it to GitLab.",
+            "description": "Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab.",
             "source": "./plugins/create-workspace",
             "strict": false
         },

@@ -1,6 +1,8 @@
 ---
 name: create-workspace
-description: Create a multi-repo Claude Code workspace for cross-repo feature work. Resolves repos by directory path, bare repo name (searched under ~/git/Paciolan), or Jira ticket; writes a versioned workspace dir (CLAUDE.md + .claude/settings.json additionalDirectories + a VS Code .code-workspace) and publishes it to GitLab. Use for "create a workspace", "multi-repo workspace", "work across repos", or starting a feature spanning several repositories.
+description: Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab.
+when_to_use: 'Use when starting work that spans multiple repositories, or to assemble repos — by directory path, bare name (searched under ~/git/Paciolan), or a Jira ticket — into one workspace. Trigger phrases: "create a workspace", "multi-repo workspace", "work across repos".'
+argument-hint: '[name] [repo ... | jira=<KEY>]'
 ---
 
 # Create a multi-repo workspace
