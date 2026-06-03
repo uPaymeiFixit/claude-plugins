@@ -18,7 +18,7 @@ under --search-root (default ~/git/Paciolan), skipping existing workspaces.
 Exit: 0 ok | 2 usage | 3 ambiguous name (candidates in JSON) | 4 no match | 6 not a workspace
 """
 from __future__ import annotations
-import argparse, json, os, re, subprocess, sys
+import argparse, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 
 PRUNE = {".git", "node_modules", ".venv", "vendor", "dist", "build", ".next", ".cache"}
@@ -200,6 +200,19 @@ def cmd_remove(a) -> int:
     return 0
 
 
+def cmd_open(a) -> int:
+    """Open the workspace's .code-workspace in VS Code (or print the path if `code` is absent)."""
+    ws = Path(a.dir).expanduser().resolve()
+    cw = next(iter(sorted(ws.glob("*.code-workspace"))), None)
+    target = str(cw) if cw else str(ws)
+    if shutil.which("code"):
+        subprocess.run(["code", target], check=False)
+        print(json.dumps({"opened": target}))
+    else:
+        print(json.dumps({"open_manually": target, "note": "`code` not on PATH"}))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -222,6 +235,10 @@ def main() -> int:
     h = sub.add_parser("host")
     h.add_argument("--dir", required=True)
     h.set_defaults(fn=cmd_host)
+
+    o = sub.add_parser("open")
+    o.add_argument("--dir", required=True)
+    o.set_defaults(fn=cmd_open)
 
     a = ap.parse_args()
     return a.fn(a)

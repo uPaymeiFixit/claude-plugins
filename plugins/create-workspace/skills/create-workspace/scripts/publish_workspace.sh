@@ -33,10 +33,24 @@ fi
 command -v glab >/dev/null || { echo "glab (GitLab CLI) not found on PATH" >&2; exit 3; }
 export GITLAB_HOST="$HOST"
 
-if ! glab auth status >/dev/null 2>&1; then
+if ! glab auth status --hostname "$HOST" >/dev/null 2>&1; then
   echo "glab is not authenticated to $HOST." >&2
   echo "Fix: run  glab auth login --hostname $HOST  (choose SSH), then re-run." >&2
   exit 3
+fi
+
+# pre-flight: can this account create projects in its personal namespace?
+CAN_CREATE="$(glab api user 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin).get('can_create_project'))" 2>/dev/null || true)"
+if [[ "$CAN_CREATE" == "False" ]]; then
+  echo "Your GitLab account on $HOST can't create projects in your personal namespace (account marked External)." >&2
+  if [[ "$HOST" == "gitlabdev.paciolan.info" ]]; then
+    echo "Fix: in Slack #devops-support, send this and wait for it to be applied:" >&2
+    echo "  @pac-devops-support can you please uncheck the box marking my Gitlab account as external so that I can create projects under my personal namespace?" >&2
+  else
+    echo "Fix: ask your GitLab administrator to enable project creation for your personal namespace." >&2
+  fi
+  echo "Then re-run this command." >&2
+  exit 4
 fi
 
 PROJECT="$NAMESPACE/$NAME"

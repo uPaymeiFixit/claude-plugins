@@ -31,7 +31,7 @@ Scripts are relative to this skill's directory.
 
 2. **Resolve the username** for the namespace: invoke the `person-to-user-map` skill if available; otherwise use the local-part of `git config user.email`.
 
-3. **Scaffold:**
+3. **Confirm, then scaffold.** First show the user the workspace `<name>`, `<namespace>`, and the full resolved repo list, and ask to proceed — this catches name typos before anything is created. Then:
    ```
    python3 scripts/workspace.py init --name <name> --namespace <username> \
      --repo <name-or-path> --repo <name-or-path> ...
@@ -58,9 +58,9 @@ Scripts are relative to this skill's directory.
 
 6. **Open it in VS Code**, then report:
    ```
-   code <workspace_dir>/<name>.code-workspace
+   python3 scripts/workspace.py open --dir <workspace_dir>
    ```
-   Then print the workspace path and note it can be reopened with that same command, or `cd <workspace_dir> && claude` for the CLI. If `code` isn't on PATH, say so and give the path to open manually.
+   Then print the workspace path and note it reopens with that same command, or `cd <workspace_dir> && claude` for the CLI. (`open` prints the path instead if `code` isn't on PATH.)
 
 ## Add or remove a repo later
 Keeps both reference files in sync (same exit codes 3/4 as `init`); afterward update the Repositories table in that workspace's `CLAUDE.md`:
