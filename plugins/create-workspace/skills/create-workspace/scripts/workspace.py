@@ -101,15 +101,34 @@ def to_ref(ws: Path, abspath: str) -> str:
     return str(p)
 
 
+def load_json(path: Path) -> dict:
+    """Existing JSON object, or {} if absent/empty/corrupt — so a merge never clobbers on a parse error."""
+    try:
+        data = json.loads(path.read_text())
+        return data if isinstance(data, dict) else {}
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
 def write_machine_files(ws: Path, name: str, paths: list[str]) -> None:
-    """paths are absolute; written as workspace-relative refs where portable, absolute otherwise."""
+    """Surgically update only the keys this script owns; preserve everything else the user/VS Code added.
+
+    paths are absolute; written as workspace-relative refs where portable, absolute otherwise.
+    settings.json: only permissions.additionalDirectories is rewritten.
+    .code-workspace: only folders is rewritten (settings, extensions, launch, tasks, ... are kept).
+    """
     (ws / ".claude").mkdir(parents=True, exist_ok=True)
-    (ws / ".claude" / "settings.json").write_text(json.dumps(
-        {"permissions": {"additionalDirectories": [to_ref(ws, p) for p in paths]}}, indent=2) + "\n")
-    folders = [{"name": f"✦ {name}", "path": "."}] + \
-              [{"name": link, "path": to_ref(ws, ap)} for link, ap in display_names(paths)]
-    (ws / f"{name}.code-workspace").write_text(
-        json.dumps({"folders": folders, "settings": {}}, indent=2) + "\n")
+    settings_path = ws / ".claude" / "settings.json"
+    settings = load_json(settings_path)
+    settings.setdefault("permissions", {})["additionalDirectories"] = [to_ref(ws, p) for p in paths]
+    settings_path.write_text(json.dumps(settings, indent=2) + "\n")
+
+    cw_path = ws / f"{name}.code-workspace"
+    cw = load_json(cw_path)
+    cw["folders"] = [{"name": f"✦ {name}", "path": "."}] + \
+                    [{"name": link, "path": to_ref(ws, ap)} for link, ap in display_names(paths)]
+    cw.setdefault("settings", {})
+    cw_path.write_text(json.dumps(cw, indent=2) + "\n")
 
 
 def current_paths(ws: Path) -> list[str]:
