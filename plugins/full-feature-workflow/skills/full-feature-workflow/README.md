@@ -109,9 +109,9 @@ When asked, answer **No** to "Create a Jira story for this work?" — the skill 
 
 This skill is an orchestrator. It delegates to:
 
-- [`create-jira-item`](../jira/create-jira-item/README.md) — **optional**, in this marketplace. Only invoked when you say "Yes" to "Create a Jira story for this work?". If not installed, answer "No, skip Jira".
-- `commit-and-mr` — **required**, hosted at [uPaymeiFixit/claude-plugins](https://github.com/uPaymeiFixit/claude-plugins). The skill checks for it on Step 0 and tells you how to install it if missing.
-- `notify-blame` — **required**, also at [uPaymeiFixit/claude-plugins](https://github.com/uPaymeiFixit/claude-plugins).
+- [`create-jira-item`](../../../create-jira-item/skills/create-jira-item/README.md) — **optional**, in this marketplace. Only invoked when you say "Yes" to "Create a Jira story for this work?". If not installed, answer "No, skip Jira".
+- [`commit-and-mr`](../../../commit-and-mr/skills/commit-and-mr/README.md) — **required**, in this marketplace. The skill checks for it on Step 0 and tells you how to install it if missing.
+- [`notify-blame`](../../../notify-blame/skills/notify-blame/README.md) — **required**, in this marketplace.
 
 To install the required dependencies:
 

@@ -27,12 +27,12 @@ Orchestrator that runs an entire feature from intake to Slack notifications by d
 
 ## Step 0: Check dependencies
 
-This skill delegates to two **required** sub-skills hosted in a separate marketplace:
+This skill delegates to two **required** sibling skills from this marketplace:
 
 - `commit-and-mr` (used in Step 5)
 - `notify-blame` (used in Step 6)
 
-Both live at https://github.com/uPaymeiFixit/claude-plugins. Before doing any work, check that they're installed by listing the user's installed skills (e.g. via the `/plugin` command or by looking for them in `${CLAUDE_PLUGIN_ROOT}` if available). If either is missing, stop and tell the user:
+They are installed separately. Before doing any work, check that they're installed by listing the user's installed skills (e.g. via the `/plugin` command or by looking for them in `${CLAUDE_PLUGIN_ROOT}` if available). If either is missing, stop and tell the user:
 
 > This skill needs `commit-and-mr` and `notify-blame` from the `uPaymeiFixit-claude-plugins` marketplace. To install them:
 >

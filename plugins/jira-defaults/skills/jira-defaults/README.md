@@ -6,7 +6,7 @@ Owns your Jira defaults — projectKey, parent, assignee, dev team, transition I
 
 ### Auto (called by other skills)
 
-Skills like `create-jira-item` invoke this before they touch Jira. Nothing for you to do.
+Skills like [`create-jira-item`](../../../create-jira-item/skills/create-jira-item/README.md) invoke this before they touch Jira. Nothing for you to do.
 
 ### As a slash command
 

@@ -101,4 +101,4 @@ The skill reads the failing job's log. Network blip → retries once. Real test 
 - **GitLab MCP server** — approvals, merge, pipeline introspection, job play/retry.
 - `glab` — used only for the `approvals` REST endpoint (the MCP equivalent doesn't return `user_can_approve` / `require_password_to_approve`).
 - **[fixed-in-build](https://gitlabdev.paciolan.info/development/tools/pac-skills/-/blob/master/skills/jira/fixed-in-build/README.md)** skill — Jira "Fixed in Build" + repo label.
-- **[jira-defaults](https://gitlabdev.paciolan.info/development/tools/pac-skills/-/blob/master/skills/jira/jira-defaults/README.md)** skill — transition IDs for the *Code Review → Dev Complete* promotion.
+- **[jira-defaults](../../../jira-defaults/skills/jira-defaults/README.md)** skill — transition IDs for the *Code Review → Dev Complete* promotion.

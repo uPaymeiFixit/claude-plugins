@@ -1,6 +1,6 @@
 # create-jira-item
 
-Create a Jira work item without filling out the long form. Pulls every field default — issue type, projectKey, parent, dev team, assignee, labels, initial workflow status — from your [`jira-defaults`](../jira-defaults/) file. You provide a title (or let the skill suggest one); everything else is sourced or asked only when the defaults can't cover it.
+Create a Jira work item without filling out the long form. Pulls every field default — issue type, projectKey, parent, dev team, assignee, labels, initial workflow status — from your [`jira-defaults`](../../../jira-defaults/skills/jira-defaults/README.md) file. You provide a title (or let the skill suggest one); everything else is sourced or asked only when the defaults can't cover it.
 
 ### Old way
 
@@ -49,7 +49,7 @@ Trigger phrases:
 
 ## What it does
 
-This skill is a thin orchestrator. Almost every field — issue type, projectKey, parent, assignee, Dev Team, labels, target status, transition IDs — is sourced from the [`jira-defaults`](../jira-defaults/) skill. `create-jira-item` only handles the title, the create call, and walking the workflow.
+This skill is a thin orchestrator. Almost every field — issue type, projectKey, parent, assignee, Dev Team, labels, target status, transition IDs — is sourced from the [`jira-defaults`](../../../jira-defaults/skills/jira-defaults/README.md) skill. `create-jira-item` only handles the title, the create call, and walking the workflow.
 
 1. Loads field defaults via the `jira-defaults` skill. On first run, that skill discovers values and writes the defaults file.
 2. Determines the title:
@@ -93,6 +93,6 @@ Creates the item with defaults, but the repo-name label is dropped because there
 
 ## Configuration
 
-All field defaults — projectKey, issue type, parent, assignee, dev team ID, target-status, labels rule, transition IDs — are owned by the [`jira-defaults`](../jira-defaults/) skill, stored at `$XDG_DATA_HOME/jira-defaults.md` (fallback `~/.local/share/jira-defaults.md`). Edit that file directly to tweak.
+All field defaults — projectKey, issue type, parent, assignee, dev team ID, target-status, labels rule, transition IDs — are owned by the [`jira-defaults`](../../../jira-defaults/skills/jira-defaults/README.md) skill, stored at `$XDG_DATA_HOME/jira-defaults.md` (fallback `~/.local/share/jira-defaults.md`). Edit that file directly to tweak.
 
 The file also supports a free-form `## Instructions` section — drop in notes for the LLM (e.g. "format summaries as `<repo>: <gitmoji> <title>`", "always include an Acceptance Criteria section", "don't use gitmoji"). Anything there is treated as binding for any Jira interaction.

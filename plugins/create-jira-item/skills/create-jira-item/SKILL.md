@@ -13,7 +13,7 @@ If the Atlassian MCP server isn't connected, suggest the user install it and sto
 
 ## Steps
 
-1. **Load defaults.** Invoke the `jira-defaults` skill via the Skill tool. It returns field defaults, transition IDs, custom field mappings, and any `## Instructions`. If the skill isn't installed, stop and tell the user to install `jira-defaults@pac-skills`.
+1. **Load defaults.** Invoke the `jira-defaults` skill via the Skill tool. It returns field defaults, transition IDs, custom field mappings, and any `## Instructions`. If the skill isn't installed, stop and tell the user to install `jira-defaults@uPaymeiFixit-claude-plugins`.
 
 2. **Determine the title.** First non-empty source wins:
     1. `$ARGUMENTS`.

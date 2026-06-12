@@ -19,7 +19,7 @@
         {
             "name": "create-jira-item",
             "description": "Create a Jira work item / ticket with sensible defaults.",
-            "source": "./plugins/jira/create-jira-item",
+            "source": "./plugins/create-jira-item",
             "strict": false
         },
         {
@@ -37,7 +37,7 @@
         {
             "name": "jira-defaults",
             "description": "Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file.",
-            "source": "./plugins/jira/jira-defaults",
+            "source": "./plugins/jira-defaults",
             "strict": false
         },
         {

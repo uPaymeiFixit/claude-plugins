@@ -7,10 +7,10 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 | Plugin | What it does |
 |---|---|
 | [commit-and-mr](plugins/commit-and-mr/skills/commit-and-mr/) | Commit, push, and open a GitLab merge request with blame-derived reviewers. |
-| [create-jira-item](plugins/jira/create-jira-item/skills/create-jira-item/) | Create a Jira work item / ticket with sensible defaults. |
+| [create-jira-item](plugins/create-jira-item/skills/create-jira-item/) | Create a Jira work item / ticket with sensible defaults. |
 | [create-workspace](plugins/create-workspace/skills/create-workspace/) | Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab. |
 | [full-feature-workflow](plugins/full-feature-workflow/skills/full-feature-workflow/) | End-to-end feature workflow: create a Jira item (if needed), implement the change, wait for review, commit & open MR, and notify blame authors. |
-| [jira-defaults](plugins/jira/jira-defaults/skills/jira-defaults/) | Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file. |
+| [jira-defaults](plugins/jira-defaults/skills/jira-defaults/) | Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file. |
 | [leeroy-jenkins](plugins/leeroy-jenkins/skills/leeroy-jenkins/) | Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs. |
 | [notify-blame](plugins/notify-blame/skills/notify-blame/) | DM every git blame author on Slack when you touch their code, with a personalized summary. |
 | [person-to-user-map](plugins/person-to-user-map/skills/person-to-user-map/) | Cache mapping people to their Slack/GitLab/Jira IDs. Used by other skills to avoid repeated API lookups. |
@@ -62,8 +62,6 @@ claude-plugins/
 ```
 
 A plugin's directory may also contain `commands/`, `agents/`, `hooks/`, `.mcp.json`, and a `.claude-plugin/plugin.json` manifest. None of these plugins use them yet.
-
-Plugin directories may be nested under category folders (e.g. `plugins/jira/create-jira-item/`) to group related plugins.
 
 ## Contributing
 
