@@ -17,9 +17,27 @@
             "strict": false
         },
         {
+            "name": "create-jira-item",
+            "description": "Create a Jira work item / ticket with sensible defaults.",
+            "source": "./plugins/jira/create-jira-item",
+            "strict": false
+        },
+        {
             "name": "create-workspace",
             "description": "Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab.",
             "source": "./plugins/create-workspace",
+            "strict": false
+        },
+        {
+            "name": "full-feature-workflow",
+            "description": "End-to-end feature workflow: create a Jira item (if needed), implement the change, wait for review, commit & open MR, and notify blame authors.",
+            "source": "./plugins/full-feature-workflow",
+            "strict": false
+        },
+        {
+            "name": "jira-defaults",
+            "description": "Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file.",
+            "source": "./plugins/jira/jira-defaults",
             "strict": false
         },
         {
