@@ -2,6 +2,9 @@
 
 Owns your Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, and any free-form `## Instructions` — stored in a single user-local file. Other Jira skills invoke this to load defaults; you can also invoke it directly to view, edit, or re-discover them.
 
+> [!NOTE]
+> **Paciolan-specific.** The bundled [defaults.template.md](defaults.template.md) ships with Paciolan's Atlassian cloudId and workflow transition IDs, and [SETUP.md](SETUP.md) writes those tables through as-is rather than discovering them. The skill logic itself is org-agnostic — if you fork this, replace the cloudId and rebuild the transition tables for your org's workflows (`getTransitionsForJiraIssue` lists them per issue).
+
 ## Usage
 
 ### Auto (called by other skills)
@@ -46,4 +49,4 @@ Skills like [`create-jira-item`](../../../create-jira-item/skills/create-jira-it
 
 ## Configuration
 
-Everything lives in one file at `$XDG_DATA_HOME/jira-defaults.md`. The cloudId is hard-coded in the template — change it to your org's Atlassian hostname if you're forking this.
+Everything lives in one file at `$XDG_DATA_HOME/jira-defaults.md`. The Paciolan-specific values noted above (cloudId, transition tables) live in the template and end up in this file — edit either to retarget another org.

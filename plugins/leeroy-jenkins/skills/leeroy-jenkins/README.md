@@ -2,6 +2,9 @@
 
 Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs.
 
+> [!NOTE]
+> **Paciolan-specific.** The lab environment names (`dev`, `qfnq`, `qfns`, `auto`), the deploy-job names, and the Prod/PUS guardrail are Paciolan's release process, baked into the SKILL.md. It also delegates to the `fixed-in-build` skill, which lives in Paciolan's internal pac-skills repo. If you fork this, replace the env/job names with your pipeline's and swap or drop the `fixed-in-build` step.
+
 ### Old way
 
 ```mermaid

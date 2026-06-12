@@ -2,6 +2,9 @@
 
 Create a Jira work item without filling out the long form. Pulls every field default — issue type, projectKey, parent, dev team, assignee, labels, initial workflow status — from your [`jira-defaults`](../../../jira-defaults/skills/jira-defaults/README.md) file. You provide a title (or let the skill suggest one); everything else is sourced or asked only when the defaults can't cover it.
 
+> [!NOTE]
+> This skill is org-agnostic, but everything it inherits from `jira-defaults` — cloudId, workflow transition IDs — is Paciolan-specific out of the box. Forking for another org? See the note in the [`jira-defaults` README](../../../jira-defaults/skills/jira-defaults/README.md).
+
 ### Old way
 
 ```mermaid
