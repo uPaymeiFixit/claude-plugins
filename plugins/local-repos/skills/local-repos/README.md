@@ -38,9 +38,9 @@ Not usually invoked directly — Claude activates it whenever you mention a repo
 ## What it does
 
 1. Resolves a bare repo name to its local clone — GitLab project search maps 1:1 to `~/git/Paciolan/Gitlab/<namespace>`, with a cached offline repo list as fallback.
-2. Picks the faster side for each search: local `rg` inside a repo (milliseconds), but the GitLab blob search as an org-wide locator (~1 s vs ~40 s of filesystem traversal).
+2. Picks the faster side for each search: local `rg` inside a repo (milliseconds), but the GitLab blob search as an org-wide locator (~1 s vs ~40 s of local filesystem traversal).
 3. Branches, commits, pushes, and opens MRs from the local clone with `glab`, then switches the repo back to its default branch so git-sync keeps fast-forwarding it.
-4. Documents the verified pitfalls of a 1,600-repo / 42 GB tree: the duplicate `development/` working tree, shallow (depth-100) mirrors, manual sync staleness, and fd/xargs/rg failure modes.
+4. Documents the verified pitfalls of searching the whole mirror: shallow (depth-100) clones, manual sync staleness, and fd/xargs/rg failure modes.
 
 ## Local or remote?
 
