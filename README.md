@@ -12,6 +12,7 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 | [full-feature-workflow](plugins/full-feature-workflow/skills/full-feature-workflow/) | End-to-end feature workflow: create a Jira item (if needed), implement the change, wait for review, commit & open MR, and notify blame authors. |
 | [jira-defaults](plugins/jira-defaults/skills/jira-defaults/) | Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file. |
 | [leeroy-jenkins](plugins/leeroy-jenkins/skills/leeroy-jenkins/) | Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs. |
+| [local-repos](plugins/local-repos/skills/local-repos/) | Points Claude at the local git-sync mirror of every Paciolan repo — local-first search, branching, and MRs that leave repos clean on their default branch. |
 | [notify-blame](plugins/notify-blame/skills/notify-blame/) | DM every git blame author on Slack when you touch their code, with a personalized summary. |
 | [person-to-user-map](plugins/person-to-user-map/skills/person-to-user-map/) | Cache mapping people to their Slack/GitLab/Jira IDs. Used by other skills to avoid repeated API lookups. |
 | [write-claude-tooling](plugins/write-claude-tooling/skills/write-claude-tooling/) | Token-efficient authoring rules for SKILL.md, CLAUDE.md, slash commands, and other LLM-consumed docs. |

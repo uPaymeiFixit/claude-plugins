@@ -47,6 +47,12 @@
             "strict": false
         },
         {
+            "name": "local-repos",
+            "description": "Points Claude at the local git-sync mirror of every Paciolan repo — local-first search, branching, and MRs that leave repos clean on their default branch.",
+            "source": "./plugins/local-repos",
+            "strict": false
+        },
+        {
             "name": "notify-blame",
             "description": "Notify git blame authors on Slack when you modify their code.",
             "source": "./plugins/notify-blame",
