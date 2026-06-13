@@ -48,7 +48,7 @@
         },
         {
             "name": "local-repos",
-            "description": "Points Claude at the local git-sync mirror of every Paciolan repo — local-first search, branching, and MRs that leave repos clean on their default branch.",
+            "description": "Points Claude at the local git-sync mirror of every org repo — local-first search, branching, and MRs that leave repos clean on their default branch.",
             "source": "./plugins/local-repos",
             "strict": false
         },

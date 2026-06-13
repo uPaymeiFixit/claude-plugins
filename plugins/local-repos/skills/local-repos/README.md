@@ -1,9 +1,9 @@
 # local-repos
 
-Points Claude at the local git-sync mirror of every Paciolan repo — local-first search, branching, and MRs that leave repos clean on their default branch.
+Points Claude at the local git-sync mirror of every org repo — local-first search, branching, and MRs that leave repos clean on their default branch.
 
 > [!NOTE]
-> Everything here is Paciolan-specific by design: the mirror lives at `~/git/Paciolan/` (maintained by [git-sync](https://github.com/uPaymeiFixit/git-sync)) and the GitLab host is `gitlabdev.paciolan.info`. Forkers should re-run the same empirical tests against their own mirror — half the value is the verified timings and pitfalls.
+> Written for a mirror at `~/git/Paciolan/` maintained by [git-sync](https://github.com/uPaymeiFixit/git-sync). To fork: change that path in [SKILL.md](SKILL.md) and re-run its timings/pitfalls against your own mirror.
 
 ### Old way
 
@@ -54,7 +54,7 @@ Not usually invoked directly — Claude activates it whenever you mention a repo
 
 ## Tooling
 
-- [`glab`](https://gitlab.com/gitlab-org/cli) authenticated to gitlabdev.paciolan.info — repo lookup, org-wide code search, MR creation
+- [`glab`](https://gitlab.com/gitlab-org/cli) authenticated to your GitLab host — repo lookup, org-wide code search, MR creation
 - `rg` / `fd` for local search
 - [git-sync](https://github.com/uPaymeiFixit/git-sync) keeps the mirror current (manual menubar trigger)
 - GitLab MCP server (optional) — fallback for MR creation; metadata queries

@@ -1,7 +1,7 @@
 ---
 name: local-repos
-description: Points Claude at the local git-sync mirror of every Paciolan repo — local-first search, branching, and MRs that leave repos clean on their default branch.
-when_to_use: 'Use whenever a Paciolan repo is referenced by name — "seat-ms", "the portal repo", any *-ms / *-ui / *-app name — or when searching code across repos, reading another team''s code, or branching / opening an MR. Every repo is already cloned under ~/git/Paciolan/ — never clone, and prefer local reads over GitLab MCP file fetches.'
+description: Points Claude at the local git-sync mirror of every org repo — local-first search, branching, and MRs that leave repos clean on their default branch.
+when_to_use: 'Use whenever an org repo is referenced by name — "seat-ms", "the portal repo", any *-ms / *-ui / *-app name — or when searching code across repos, reading another team''s code, or branching / opening an MR. Every repo is already cloned under ~/git/Paciolan/ — never clone, and prefer local reads over GitLab MCP file fetches.'
 ---
 
 # local-repos
@@ -10,16 +10,16 @@ when_to_use: 'Use whenever a Paciolan repo is referenced by name — "seat-ms", 
 
 | Path | Source |
 |---|---|
-| `Gitlab/<path_with_namespace>` | gitlabdev.paciolan.info, nested by group |
-| `Github/<name>` | github.com/Paciolan, flat |
-| `Bitbucket/<slug>` | bitbucket.org/paciolan |
+| `Gitlab/<path_with_namespace>` | GitLab, nested by group |
+| `Github/<name>` | GitHub, flat |
+| `Bitbucket/<slug>` | Bitbucket |
 
 Mirror repos can hold the user's real local work (feature branches, uncommitted changes) — check `git status` before touching one, and never mutate the tree except the MR flow below.
 
 ## Resolve a repo name
 
 ```bash
-GITLAB_HOST=gitlabdev.paciolan.info glab api 'projects?search=seat-ms&simple=true' | jq -r '.[].path_with_namespace'
+glab api 'projects?search=seat-ms&simple=true' | jq -r '.[].path_with_namespace'
 # local clone = ~/git/Paciolan/Gitlab/<path_with_namespace>   (1:1 mapping)
 ```
 Offline (~3 s once, then ~7 ms per lookup):
@@ -41,9 +41,9 @@ Domain names (`seat-ms`) are usually unique; generic basenames (`terraform`, `ap
 | history / blame beyond ~100 commits | not the mirror (shallow clones) — API, or a full clone in /tmp |
 
 ```bash
-glab api 'search?scope=blobs&search=TERM&per_page=100'   # org-wide; group-scoped: groups/development/search?…
+glab api 'search?scope=blobs&search=TERM&per_page=100'   # org-wide; group-scoped: groups/<group>/search?…
 ```
-- glab's default host is configured as gitlabdev.paciolan.info; if `glab api` ever 401s, check `glab config get -g host`.
+- If `glab api` ever 401s, its default host is wrong — check `glab config get -g host`.
 - Blob search returns text fragments from default branches only — a locator, not a grepper. Dedupe by `project_id`, then rg the local clone.
 - Mirror freshness: `stat -f %Sm <repo>/.git/FETCH_HEAD` on any one repo — the whole tree shares one sync timestamp.
 - Sync settings can exclude some server projects. No local hit ≠ absence — confirm remotely.
