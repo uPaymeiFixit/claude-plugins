@@ -43,7 +43,6 @@ Domain names (`seat-ms`) are usually unique; generic basenames (`terraform`, `ap
 ```bash
 glab api 'search?scope=blobs&search=TERM&per_page=100'   # org-wide; group-scoped: groups/<group>/search?…
 ```
-- If `glab api` ever 401s, its default host is wrong — check `glab config get -g host`.
 - Blob search returns text fragments from default branches only — a locator, not a grepper. Dedupe by `project_id`, then rg the local clone.
 - Mirror freshness: `stat -f %Sm <repo>/.git/FETCH_HEAD` on any one repo — the whole tree shares one sync timestamp.
 - Sync settings can exclude some server projects. No local hit ≠ absence — confirm remotely.
@@ -53,10 +52,9 @@ glab api 'search?scope=blobs&search=TERM&per_page=100'   # org-wide; group-scope
 
 - Bare `find` in the Bash tool is a bfs shim ~5× faster on this tree than `command find`; bare `grep` is a ugrep shim — just use `rg`.
 - Default rg honors each repo's .gitignore — correct for source search. Never `--no-ignore` tree-wide (2–4× slower, garbage hits). If one repo unexpectedly returns nothing, retry `rg -uu` — whitelist .gitignores (`*` + `!…`) hide even tracked files.
-- fd wins filename searches (pass `-E node_modules` — some repos commit it), but its globs are case-sensitive (0 hits silently — pass `-i`), and for repo enumeration it needs `-HI` to not miss repos and is still ~2× slower than the pruned find above.
+- fd wins filename searches (pass `-E node_modules` — some repos commit it), but for repo enumeration it needs `-HI` to not silently miss repos and is still ~2× slower than the pruned find above.
 - Paths with spaces exist in the tree — always `find -print0 | xargs -0`.
-- `xargs rg` exit 123 = "some chunk had no match", not failure. GNU xargs runs the command even on empty input — add `-r`. `-I` silently overrides `-n`.
-- No `timeout` binary here — use `gtimeout`.
+- In `xargs -I{}`, `-I` silently overrides `-n` — don't combine them in the fan-out below.
 
 Per-repo fan-out, <5 s across the whole tree (needs `/tmp/repos.txt`):
 ```bash
