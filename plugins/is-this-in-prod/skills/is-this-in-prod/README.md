@@ -38,7 +38,7 @@ Takes a Jira key, an MR (URL or IID), and/or a raw commit SHA — any mix.
 
 ## What it does
 
-1. **Resolves the input to `(project, commit)` anchors.** A commit or MR is direct; a Jira key fans out to every linked MR (via the [fixed-in-build](https://github.com/uPaymeiFixit) resolution chain — remote links, the Fixed in Build field, comments, description) across however many repos it touches.
+1. **Resolves the input to `(project, commit)` anchors.** A commit or MR is direct; a Jira key fans out to every linked MR (via the [fixed-in-build](https://gitlabdev.paciolan.info/development/tools/pac-skills/-/tree/master/skills/jira/fixed-in-build?ref_type=heads) resolution chain — remote links, the Fixed in Build field, comments, description) across however many repos it touches.
 2. **Finds the live prod commit per repo** — the most recent *successful* deployment to the `pus` environment via GitLab's Deployments API. Because a rollback is just a newer successful deploy of an older commit, the latest success is always what's actually serving.
 3. **Asks GitLab whether each anchor is in prod** with the server-side compare API: if the prod commit reaches the anchor, it's deployed. No clone, no local `git`.
 4. **Reports a verdict per repo**, then an overall answer — a story is only *fully* in prod when every one of its MRs is.
@@ -73,4 +73,4 @@ The skill compares against the *currently serving* commit, not the newest pipeli
 
 - [`glab`](https://gitlab.com/gitlab-org/cli) authenticated to your GitLab host — deployments, environments, commit compare (or the GitLab MCP server)
 - Atlassian/Jira access (MCP or REST) — only needed when the input is a Jira key
-- Related: [fixed-in-build](https://github.com/uPaymeiFixit) for the Jira-key → MR resolution chain this reuses
+- Related: [fixed-in-build](https://gitlabdev.paciolan.info/development/tools/pac-skills/-/tree/master/skills/jira/fixed-in-build?ref_type=heads) (internal Paciolan skill) for the Jira-key → MR resolution chain this reuses
