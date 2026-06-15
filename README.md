@@ -10,6 +10,7 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 | [create-jira-item](plugins/create-jira-item/skills/create-jira-item/) | Create a Jira work item / ticket with sensible defaults. |
 | [create-workspace](plugins/create-workspace/skills/create-workspace/) | Stitch several existing repos into one Claude Code context for cross-repo feature work, then publish the workspace to GitLab. |
 | [full-feature-workflow](plugins/full-feature-workflow/skills/full-feature-workflow/) | End-to-end feature workflow: create a Jira item (if needed), implement the change, wait for review, commit & open MR, and notify blame authors. |
+| [is-this-in-prod](plugins/is-this-in-prod/skills/is-this-in-prod/) | Answer "is this commit / MR / Jira story in production right now?" by checking what GitLab actually has deployed to the prod environment, rollbacks included. |
 | [jira-defaults](plugins/jira-defaults/skills/jira-defaults/) | Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file. |
 | [leeroy-jenkins](plugins/leeroy-jenkins/skills/leeroy-jenkins/) | Ship a GitLab MR end-to-end — approve, merge, update Fixed in Build, promote the Jira story, and play the lab deploy jobs. |
 | [local-repos](plugins/local-repos/skills/local-repos/) | Points Claude at the local git-sync mirror of every org repo — local-first search, branching, and MRs that leave repos clean on their default branch. |

@@ -35,6 +35,12 @@
             "strict": false
         },
         {
+            "name": "is-this-in-prod",
+            "description": "Answer \"is this commit / MR / Jira story in production right now?\" by checking what GitLab actually has deployed to the prod environment, rollbacks included.",
+            "source": "./plugins/is-this-in-prod",
+            "strict": false
+        },
+        {
             "name": "jira-defaults",
             "description": "Loads or edits Jira defaults — projectKey, parent, assignee, dev team, transition IDs, custom fields, free-form instructions — stored in a single user-local file.",
             "source": "./plugins/jira-defaults",
