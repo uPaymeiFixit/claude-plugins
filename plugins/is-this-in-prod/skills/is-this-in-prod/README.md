@@ -8,22 +8,18 @@ Answer "is this commit / MR / Jira story in production right now?" by checking w
 ### Old way
 
 ```mermaid
-flowchart TD
-    A["“is INVT-3653 in prod?”"] --> B[find its MRs by hand]
-    B --> C[open the prod pipeline list]
-    C --> D{newest pipeline?<br/>but was there a rollback?}
-    D --> E[git log / cherry-pick guesswork]
-    E --> F[🤷 probably?]
+flowchart LR
+    A["“is INVT-3653 in prod?”"] --> B[hunt down its MRs<br/>+ merge commits]
+    B --> C[find the last successful<br/>prod deploy per repo]
+    C --> D[compare each commit<br/>against the deployed one]
+    D --> E[✅ / ❌]
 ```
 
 ### New way
 
 ```mermaid
 flowchart LR
-    A["“is INVT-3653 in prod?”"] --> B[resolve story → MRs → commits]
-    B --> C["last successful pus deploy<br/>= live commit (rollback-correct)"]
-    C --> D[GitLab compare: ancestor of live?]
-    D --> E[✅ / ❌ per repo + verdict]
+    A["“is INVT-3653 in prod?”"] --> E[✅ / ❌]
 ```
 
 ## Usage
