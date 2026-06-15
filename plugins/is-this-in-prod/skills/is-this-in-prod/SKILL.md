@@ -50,12 +50,13 @@ Dedupe across all sources. If nothing resolves, say so and ask the user for the 
 For each project, the live prod commit is **the most recent *successful* deployment to `PROD_ENV`**. This is rollback-correct by construction: a rollback is just a newer successful deployment of an older commit, so the latest success is always what's actually serving.
 
 ```bash
-glab api "projects/<id>/deployments?environment=$PROD_ENV&status=success&order_by=finished_at&sort=desc&per_page=1"
+glab api "projects/<id>/deployments?environment=$PROD_ENV&status=success&order_by=created_at&sort=desc&per_page=1"
 ```
 
 Take `.[0].sha` — that's the live commit. Also grab `.[0].id`, `.ref`, and `.deployable.pipeline.id` for the report.
 
-- **Don't** use the environment's `last_deployment` directly — that's the most recent deployment of *any* status, so a failed or in-flight redeploy sitting on top would mislead you. Query `status=success` and order by `finished_at`.
+- **Don't** use the environment's `last_deployment` directly — that's the most recent deployment of *any* status, so a failed or in-flight redeploy sitting on top would mislead you. Query `status=success` and order by `created_at`.
+- Order by **`created_at`**, not `finished_at` — deploy records may leave `finished_at` null, which makes that sort undefined. `created_at` desc among `status=success` is still rollback-correct (a rollback is a newer record redeploying an older sha) and is a valid `order_by` for the MCP `list_deployments` tool, so the MCP-first path works without dropping to `glab`.
 - **No successful deployment found** ⇒ nothing from this repo is in prod; every anchor in it is "not in prod." Say so.
 - **Fallback** (repo doesn't register the environment — empty `list_environments` match for `PROD_ENV`): scan recent default-branch pipelines for a successful prod-deploy job (e.g. one named `Deploy To PUS EKS`) and use that pipeline's `sha`. Note in the report that you fell back.
 
