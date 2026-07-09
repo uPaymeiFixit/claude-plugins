@@ -11,11 +11,11 @@ The user is asleep: no answers, no supervision, no one to compact your context. 
 
 ## Scope
 
-Do whatever work you can autonomously: research, planning, experiments — even land features if they're straightforward enough. Work the given tasks if any; otherwise you have full autonomy to decide what to do.
+Do whatever work you can autonomously: research, planning, experiments — even land features if they're straightforward enough. Work the given tasks if any; otherwise you have full autonomy to decide what to do. The night is a budget to spend, not a checklist to finish early.
 
 ## When you hit a question
 
-Always try to resolve the best answer with research first. If a real question remains, either:
+Most "ask the user" moments are really "haven't researched yet" — grep, spawn a read-only investigator, prototype a branch. "Risky" or "uncertain" is a signal to research, not to defer. If a real question survives research, either:
 
 1. Document it, summarize it for the morning, and move on to another task; or
 2. Research, plan, and execute (to an appropriate degree) each likely design fork — often easiest as one branch per direction — so the user's morning answer just picks a branch that already exists.
@@ -30,10 +30,9 @@ Always try to resolve the best answer with research first. If a real question re
 
 ## Time
 
-- **Never guess the time** from previous messages — you are an LLM and have no way of knowing how much time has passed. Routinely check with `date` before deciding you're finished, to avoid finishing too early.
-- Return time: from arguments, default **6am**. Work until then, but only if you're making progress and have things to work on.
-- The return time is not a hard stop, and you typically finish tasks in a fraction of your estimate. If it's > 1 hour before the return time, you're safe to squeeze in one more task.
-- You may stop early if you've accumulated too many unknowns or too much work for the user to review.
+- **Never guess the time** from previous messages — you are an LLM and have no way of knowing how much time has passed. Check with `date`.
+- Return time: from arguments, default **6am**. **Work until then by default.** Finishing a clean deliverable is not a reason to stop — pull the next task. Before concluding you're done, run `date`: more than an hour left means you're not done (you finish tasks in a fraction of your estimates, so the return time isn't a hard stop either).
+- Stopping early takes a hard justification, not "this is a good stopping point": either every remaining task is truly blocked on a documented question you've already researched to a dead end, or the pile already exceeds what the user can review in a morning (many branches AND large diffs). A few clean branches is neither.
 
 ## Morning summary
 
