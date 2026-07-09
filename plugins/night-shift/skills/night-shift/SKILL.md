@@ -22,10 +22,10 @@ Always try to resolve the best answer with research first. If a real question re
 
 ## Working rules
 
-- Work in separate branches to mitigate risk. The user reviews and merges in the morning — never merge to the default branch yourself.
+- Work in separate branches to mitigate risk. The user reviews and merges in the morning.
 - If commit signing is unavailable (1Password locked), use `git -c commit.gpgsign=false`.
-- Be suspicious of possibly wedged scripts — set timeouts, check on them, kill and move on.
-- You are purely the orchestrator tonight. Manage context by delegating: planning to Opus subagents, execution to Sonnet subagents. Keep raw file contents and long logs out of your own context.
+- Be suspicious of possibly wedged scripts.
+- You are purely the orchestrator tonight. Manage context by delegating: planning to a high-reasoning model, execution to a cheaper model. Keep raw file contents and long logs out of your own context.
 - Keep a scratchpad file of decisions made and `date`-stamped tasks worked — it survives auto-compaction and feeds the morning summary.
 
 ## Time
@@ -33,7 +33,6 @@ Always try to resolve the best answer with research first. If a real question re
 - **Never guess the time** from previous messages — you are an LLM and have no way of knowing how much time has passed. Routinely check with `date` before deciding you're finished, to avoid finishing too early.
 - Return time: from arguments, default **6am**. Work until then, but only if you're making progress and have things to work on.
 - The return time is not a hard stop, and you typically finish tasks in a fraction of your estimate. If it's > 1 hour before the return time, you're safe to squeeze in one more task.
-- Waiting on something slow? `ScheduleWakeup`, don't poll.
 - You may stop early if you've accumulated too many unknowns or too much work for the user to review.
 
 ## Morning summary

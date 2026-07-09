@@ -75,8 +75,3 @@ No tasks given — Claude finds its own work: backlog items, cleanups, experimen
 ### Design forks
 
 If Claude hits a real decision it can't resolve by research (two viable architectures, say), it builds both directions on separate branches. In the morning you answer one question and the chosen path is already implemented.
-
-## Requirements
-
-- `git` — branch-per-task workflow; falls back to `git -c commit.gpgsign=false` when signing is unavailable overnight
-- Subagent support (Opus/Sonnet delegation) and `ScheduleWakeup` for long waits — standard in Claude Code
