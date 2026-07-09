@@ -59,6 +59,12 @@
             "strict": false
         },
         {
+            "name": "night-shift",
+            "description": "Work autonomously overnight — research, plan, experiment, and land straightforward features on separate branches — then deliver a brutally concise morning summary.",
+            "source": "./plugins/night-shift",
+            "strict": false
+        },
+        {
             "name": "notify-blame",
             "description": "Notify git blame authors on Slack when you modify their code.",
             "source": "./plugins/notify-blame",
