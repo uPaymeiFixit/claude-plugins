@@ -36,4 +36,4 @@ Most "ask the user" moments are really "haven't researched yet" — grep, spawn 
 
 ## Handoff summary
 
-Write a shift-summary artifact including (but not limited to): what you did, branches created, design-fork questions with your recommendation. Brutally concise — think "voice mode". The reader is a standard developer who was NOT standing over your shoulder the whole shift: no internal variables, no file-discovery blow-by-blow, no lingo you invented along the way. Straight to the point.
+Write a shift-summary artifact including (but not limited to): what you did, branches created, design-fork questions with your recommendation, and a file manifest — every file created, modified, or deleted during the shift, one line each: what it does (created), what changed semantically (modified), or why it's gone (deleted). Executive altitude, not a diff walkthrough. Brutally concise — think "voice mode". The reader is a standard developer who was NOT standing over your shoulder the whole shift: no internal variables, no file-discovery blow-by-blow, no lingo you invented along the way. Straight to the point.
