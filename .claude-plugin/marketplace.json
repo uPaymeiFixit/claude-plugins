@@ -59,6 +59,12 @@
             "strict": false
         },
         {
+            "name": "message-voice",
+            "description": "Voice rules for prose a human reads — say the one thing, plain words, let the reader pull the rest.",
+            "source": "./plugins/message-voice",
+            "strict": false
+        },
+        {
             "name": "night-shift",
             "description": "Work autonomously overnight — research, plan, experiment, and land straightforward features on separate branches — then deliver a brutally concise morning summary.",
             "source": "./plugins/night-shift",
