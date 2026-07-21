@@ -2,11 +2,14 @@
 name: message-voice
 description: Voice rules for prose a human reads — say the one thing, plain words, let the reader pull the rest.
 when_to_use: 'Use before writing anything a human will read and react to: a chat reply, summary, report, artifact, Slack message, email, or MR comment. Use when the user is asking questions or says "I want to understand this" / "let me ask some questions" — answer each question in this voice, one at a time. Also when the user says "message voice", "too wordy", "just answer the question", or asks for shorter replies — that means a reply was too much; cut it down.'
+argument-hint: '[off]'
 ---
 
 # message-voice
 
 How to write prose a person reads and reacts to — Slack, email, MR comments, chat replies, summaries, reports, artifacts. Not code comments, not docs.
+
+**This is a toggle, not a one-off.** Once invoked, write every reply in this voice for the rest of the session — don't drift back after one response. It turns off only when the user says so ("message voice off", "back to normal", `/message-voice off`). Invoked with the argument `off`: don't apply the voice — reply in your default voice from now on.
 
 ## The one rule
 

@@ -34,6 +34,10 @@ To invoke it by hand — or to tell Claude a reply was too much and to cut it do
 
 > too wordy — just answer the question
 
+Once on, it stays on for the whole session. To turn it off, say so or run `/message-voice off`:
+
+> message voice off
+
 ## What it does
 
 1. Leads with the concrete thing — the artifact, the ask, the finding — then stops.
