@@ -9,7 +9,7 @@ argument-hint: '[task description]'
 
 You are the orchestrator. Delegate everything heavy: subagents read and write; you route. Keep raw file contents, long logs, and code detail out of your own context. Track the stages with TodoWrite.
 
-Model tiering: **Opus** = research + synthesis, **Fable** = review, **Sonnet** = execution swarm. Everything below is a default with a history of working well, not a hard requirement. If the user asks you not to use Fable, use Opus in its place.
+Model tiering: **Opus** = research + synthesis, **Fable** = review + architecture guru, **Sonnet** = execution swarm. Everything below is a default with a history of working well, not a hard requirement. If the user asks you not to use Fable, use Opus in its place.
 
 ## Stage 1 — Plan (`model: "opus"`)
 
@@ -17,7 +17,7 @@ Spawn a planning agent: deep research, then a high-level architectural plan. No 
 
 ## Stage 2 — Review the plan (`model: "fable"`)
 
-Spawn one review agent over the plan. Fable is expensive and extremely good at seeing the whole scope end-to-end — give it full context and instruct it to be adversarial about every plan and option. It must not do its own deep research: if it needs more information, it returns questions and you spawn another Opus agent to answer them. Loop Stage 1 ↔ 2 until plan and reviewer reach consensus.
+Spawn one review agent over the plan. Fable is expensive but extremely good at seeing the whole scope end-to-end — give it full context and instruct it to be adversarial about every plan and option. It must not do its own deep research: if it needs more information, it returns questions and you spawn another Opus agent to answer them. Loop Stage 1 ↔ 2 until plan and reviewer reach consensus.
 
 ## Stage 3 — Detail (`model: "opus"`)
 
