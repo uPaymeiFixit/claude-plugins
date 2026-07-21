@@ -77,6 +77,12 @@
             "strict": false
         },
         {
+            "name": "orchestrate-task",
+            "description": "Run a medium-sized task through a model-tiered subagent pipeline — Opus plans, Fable reviews the plan, Sonnet executes, and a bundled adversarial-review workflow verifies the diff.",
+            "source": "./plugins/orchestrate-task",
+            "strict": false
+        },
+        {
             "name": "person-to-user-map",
             "description": "Maps people to user IDs / names across platforms.",
             "source": "./plugins/person-to-user-map",

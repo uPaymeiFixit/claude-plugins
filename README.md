@@ -17,6 +17,7 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 | [message-voice](plugins/message-voice/skills/message-voice/) | Voice rules for prose a human reads — say the one thing, plain words, let the reader pull the rest. |
 | [night-shift](plugins/night-shift/skills/night-shift/) | Work autonomously overnight — research, plan, experiment, and land straightforward features on separate branches — then deliver a brutally concise morning summary. |
 | [notify-blame](plugins/notify-blame/skills/notify-blame/) | DM every git blame author on Slack when you touch their code, with a personalized summary. |
+| [orchestrate-task](plugins/orchestrate-task/skills/orchestrate-task/) | Run a medium-sized task through a model-tiered subagent pipeline — Opus plans, Fable reviews the plan, Sonnet executes, and a bundled adversarial-review workflow verifies the diff. |
 | [person-to-user-map](plugins/person-to-user-map/skills/person-to-user-map/) | Cache mapping people to their Slack/GitLab/Jira IDs. Used by other skills to avoid repeated API lookups. |
 | [write-claude-tooling](plugins/write-claude-tooling/skills/write-claude-tooling/) | Token-efficient authoring rules for SKILL.md, CLAUDE.md, slash commands, and other LLM-consumed docs. |
 
