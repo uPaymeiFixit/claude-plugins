@@ -65,21 +65,9 @@
             "strict": false
         },
         {
-            "name": "night-shift",
-            "description": "Work autonomously overnight — research, plan, experiment, and land straightforward features on separate branches — then deliver a brutally concise morning summary.",
-            "source": "./plugins/night-shift",
-            "strict": false
-        },
-        {
             "name": "notify-blame",
             "description": "Notify git blame authors on Slack when you modify their code.",
             "source": "./plugins/notify-blame",
-            "strict": false
-        },
-        {
-            "name": "orchestrate-task",
-            "description": "Run a medium-sized task through a model-tiered subagent pipeline — Opus plans, Fable reviews the plan, Sonnet executes, and a bundled adversarial-review workflow verifies the diff.",
-            "source": "./plugins/orchestrate-task",
             "strict": false
         },
         {
@@ -89,9 +77,9 @@
             "strict": false
         },
         {
-            "name": "summarize-task",
-            "description": "Summarize finished work for a reader who wasn't watching — outcome first, plain names, no session-invented jargon.",
-            "source": "./plugins/summarize-task",
+            "name": "task-pipeline",
+            "description": "Bundle of three skills: orchestrate-task runs a task through a model-tiered subagent pipeline, summarize-task reports the finished work, and night-shift chains them to work autonomously overnight.",
+            "source": "./plugins/task-pipeline",
             "strict": false
         },
         {

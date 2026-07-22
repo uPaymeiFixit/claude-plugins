@@ -30,7 +30,7 @@ Invoke it directly when you come back to a session:
 
 Or as a slash command: `/summarize-task`
 
-It's also designed to be called by other skills as their final reporting step — e.g. [orchestrate-task](../../../orchestrate-task/skills/orchestrate-task/README.md) after its pipeline finishes, or [night-shift](../../../night-shift/skills/night-shift/README.md) for the morning handoff.
+It's also designed to be called by other skills as their final reporting step — e.g. [orchestrate-task](../orchestrate-task/README.md) after its pipeline finishes, or [night-shift](../night-shift/README.md) for the morning handoff.
 
 ## What it does
 

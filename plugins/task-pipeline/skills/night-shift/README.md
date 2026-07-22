@@ -50,9 +50,9 @@ Trigger phrases:
 1. Works the given tasks — or picks its own: research, planning, experiments, even landing features that are straightforward enough.
 2. Researches its way past questions instead of blocking on you. Anything genuinely ambiguous gets documented for the morning, or built out as one branch per likely design direction so your answer just picks a winner.
 3. Keeps every change on separate branches for you to review and merge in the morning.
-4. Orchestrates rather than executes — planning delegated to Opus subagents, execution to Sonnet subagents — so its own context lasts the night.
+4. Orchestrates rather than executes — each substantial task runs through [orchestrate-task](../orchestrate-task/README.md)'s model-tiered pipeline — so its own context lasts the night.
 5. Checks the real clock with `date` (never guesses elapsed time) and works until your return time, squeezing in one more task when there's an hour to spare.
-6. Writes a morning summary artifact: what happened, branches created, and design-fork questions with a recommendation. Brutally concise.
+6. Writes a morning summary artifact with [summarize-task](../summarize-task/README.md): what happened, branches created, and design-fork questions with a recommendation. Brutally concise.
 
 ## Use cases
 
