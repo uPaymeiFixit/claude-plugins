@@ -19,6 +19,7 @@ A personal marketplace of generic [Claude Code](https://code.claude.com) skills.
 | [notify-blame](plugins/notify-blame/skills/notify-blame/) | DM every git blame author on Slack when you touch their code, with a personalized summary. |
 | [orchestrate-task](plugins/orchestrate-task/skills/orchestrate-task/) | Run a medium-sized task through a model-tiered subagent pipeline — Opus plans, Fable reviews the plan, Sonnet executes, and a bundled adversarial-review workflow verifies the diff. |
 | [person-to-user-map](plugins/person-to-user-map/skills/person-to-user-map/) | Cache mapping people to their Slack/GitLab/Jira IDs. Used by other skills to avoid repeated API lookups. |
+| [summarize-task](plugins/summarize-task/skills/summarize-task/) | Summarize finished work for a reader who wasn't watching — outcome first, plain names, no session-invented jargon. |
 | [write-claude-tooling](plugins/write-claude-tooling/skills/write-claude-tooling/) | Token-efficient authoring rules for SKILL.md, CLAUDE.md, slash commands, and other LLM-consumed docs. |
 
 ## Getting started

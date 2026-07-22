@@ -89,6 +89,12 @@
             "strict": false
         },
         {
+            "name": "summarize-task",
+            "description": "Summarize finished work for a reader who wasn't watching — outcome first, plain names, no session-invented jargon.",
+            "source": "./plugins/summarize-task",
+            "strict": false
+        },
+        {
             "name": "write-claude-tooling",
             "description": "Token-efficient authoring rules for LLM-consumed docs and Claude Code configuration.",
             "source": "./plugins/write-claude-tooling",
