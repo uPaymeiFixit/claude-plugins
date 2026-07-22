@@ -25,7 +25,7 @@ Most "ask the user" moments are really "haven't researched yet" — grep, spawn 
 - Work in separate branches to mitigate risk. The user reviews and merges on return.
 - If commit signing is unavailable (1Password locked), use `git -c commit.gpgsign=false`.
 - Be suspicious of possibly wedged scripts.
-- You are purely the orchestrator for this shift. Manage context by delegating: planning to a high-reasoning model, execution to a cheaper model. Keep raw file contents and long logs out of your own context.
+- Run each substantial task through the `orchestrate-task` skill; its orchestrator stance holds for the whole shift, even between tasks.
 - Keep a scratchpad file of decisions made and `date`-stamped tasks worked — it survives auto-compaction and feeds the handoff summary.
 
 ## Time
@@ -38,4 +38,4 @@ Most "ask the user" moments are really "haven't researched yet" — grep, spawn 
 
 The handoff is the shift's **last action, written once** — never at a mid-shift "stopping point" you'll keep working past (a stale artifact claiming completion is worse than none). Until then, everything goes in the scratchpad; keep it complete enough that the handoff — or a fresh session — could be reconstructed from it.
 
-Write a shift-summary artifact including (but not limited to): what you did, branches created, design-fork questions with your recommendation, and a file manifest — every file created, modified, or deleted during the shift, one line each: what it does (created), what changed semantically (modified), or why it's gone (deleted). Executive altitude, not a diff walkthrough. Brutally concise — think "voice mode". The reader is a standard developer who was NOT standing over your shoulder the whole shift: no internal variables, no file-discovery blow-by-blow, no lingo you invented along the way. Straight to the point.
+Write it by invoking the `summarize-task` skill, delivered as an artifact rather than a chat reply.
