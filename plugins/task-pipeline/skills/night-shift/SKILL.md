@@ -25,7 +25,7 @@ Most "ask the user" moments are really "haven't researched yet" — grep, spawn 
 - Work in separate branches to mitigate risk. The user reviews and merges on return.
 - If commit signing is unavailable (1Password locked), use `git -c commit.gpgsign=false`.
 - Be suspicious of possibly wedged scripts.
-- Run each substantial task through the `orchestrate-task` skill; its orchestrator stance holds for the whole shift, even between tasks.
+- Before starting each substantial task, call the Skill tool with `task-pipeline:orchestrate-task` and follow the stages it loads. Do not approximate the pipeline from its one-line description — the plan-review loop and the adversarial diff review exist only in the skill body, and skipping the invocation means skipping them. Re-invoke whenever the stages are no longer in context (e.g. after compaction). Its orchestrator stance holds for the whole shift, even between tasks.
 - Keep a scratchpad file of decisions made and `date`-stamped tasks worked — it survives auto-compaction and feeds the handoff summary.
 
 ## Time
@@ -38,4 +38,4 @@ Most "ask the user" moments are really "haven't researched yet" — grep, spawn 
 
 The handoff is the shift's **last action, written once** — never at a mid-shift "stopping point" you'll keep working past (a stale artifact claiming completion is worse than none). Until then, everything goes in the scratchpad; keep it complete enough that the handoff — or a fresh session — could be reconstructed from it.
 
-Write it by invoking the `summarize-task` skill, delivered as an artifact rather than a chat reply.
+Write it by calling the Skill tool with `task-pipeline:summarize-task` (same rule: load the body, don't work from the description), delivered as an artifact rather than a chat reply.

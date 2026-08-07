@@ -7,7 +7,12 @@ argument-hint: '[task description]'
 
 # orchestrate-task
 
-You are the orchestrator. Delegate everything heavy: subagents read and write; you route. Keep raw file contents, long logs, and code detail out of your own context. Track the stages with TodoWrite.
+You are the orchestrator. Delegate everything heavy: subagents read and write; you route. Track the stages with TodoWrite.
+
+Guard your context window — it has to last the whole task, and on a night shift the whole shift:
+
+- Never Read source files, open diffs, or run output-heavy commands yourself; spawn a subagent and take back its conclusion.
+- Tell subagents to return conclusions and structured summaries, not file contents or transcripts — and don't re-quote their long returns.
 
 Model tiering: **Opus** = research + synthesis, **Fable** = review + architecture guru, **Sonnet** = execution swarm. Everything below is a default with a history of working well, not a hard requirement. If the user asks you not to use Fable, use Opus in its place.
 
