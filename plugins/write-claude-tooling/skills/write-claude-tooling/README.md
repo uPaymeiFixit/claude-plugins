@@ -54,21 +54,23 @@ This skill triggers automatically when you edit Claude Code configuration. You d
 
 ## What it does
 
-Applies four authoring principles to anything Claude writes for itself or another Claude:
+Applies five authoring principles to anything Claude writes for itself or another Claude:
 
 1. **Only document what Claude doesn't know.** Project-specific conventions, custom code, non-obvious decisions. Not standard frameworks, common patterns, or language idioms. Test: _"Would Claude do the wrong thing without this?"_ If no, cut it.
 
 2. **Prefer pointing to code over describing it.** `Read ./path/to/file.ts` or `@file` references beat duplicating content. If content is >5 lines and workflow-specific, put it in a skill and reference it. If 1-2 lines of universal context, inline in `CLAUDE.md`.
 
-3. **Prefer scripts over instructions.** Deterministic tasks (setup, migrations, CI steps) belong in `.claude/scripts/`, referenced from commands. Scripts can't go stale — they either work or visibly break. Prose instructions silently rot.
+3. **Prefer scripts over instructions.** Turn deterministic tasks (setup, migrations, CI steps) into scripts and reference them. Scripts can't go stale — they either work or visibly break. Prose instructions silently rot.
 
 4. **Show, don't tell.** One correct example replaces paragraphs of rules. Tables and bullets over prose.
+
+5. **Name things by what they are.** Condensing is token-efficient; coining is not. A name invented mid-session ("the oracle", "the salvage") is cheap only for the writer who holds the referent — every later reader pays to map it back, and each rewrite drifts further from the literal thing. Descriptive abbreviations are fine; metaphors and codenames are not.
 
 ## Use cases
 
 ### Writing a new skill
 
-Skills are LLM-consumed docs. The frontmatter `description` lists trigger keywords, the body stays under ~80 lines, and steps are imperative — not explanations. This skill keeps you honest on all three.
+Skills are LLM-consumed docs. The frontmatter `description` lists trigger keywords, the body carries only what Claude wouldn't otherwise do, and steps are imperative — not explanations. This skill keeps you honest on all three.
 
 ### Editing `CLAUDE.md` / `AGENTS.md`
 

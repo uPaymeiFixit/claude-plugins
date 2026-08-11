@@ -23,13 +23,15 @@ These files are for LLMs. Maximize signal per token.
 
 2. **Prefer pointing to code over describing it.** `Read ./path/to/file.ts` or `@file` references beat duplicating content. If content is >5 lines and workflow-specific, put it in a skill and reference it. If 1-2 lines of universal context, inline in CLAUDE.md.
 
-3. **Prefer scripts over instructions.** Deterministic tasks (setup, migrations, CI steps) belong in `.claude/scripts/`, referenced from commands. Scripts can't go stale — they either work or visibly break. Prose instructions silently rot.
+3. **Prefer scripts over instructions.** Turn deterministic tasks (setup, migrations, CI steps) into scripts and reference them. Scripts can't go stale — they either work or visibly break. Prose instructions silently rot.
 
 4. **Show, don't tell.** One correct example replaces paragraphs of rules. Tables and bullets over prose.
 
+5. **Name things by what they are.** Condensing is token-efficient; coining is not. A name invented mid-session ("the oracle", "the salvage") is cheap only for the writer who holds the referent — every later reader pays to map it back, and each rewrite drifts further from the literal thing. Descriptive abbreviations are fine; metaphors and codenames are not.
+
 ## Structure
 
-- **Skills**: frontmatter `description` lists trigger keywords. Body under ~80 lines.
+- **Skills**: frontmatter `description` lists trigger keywords.
 - **Commands**: imperative steps, not explanations.
 - **CLAUDE.md/AGENTS.md**: group by concern. Link to skills for detail.
 
