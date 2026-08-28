@@ -14,17 +14,19 @@ Guard your context window — it has to last the whole task, and on a night shif
 - Never Read source files, open diffs, or run output-heavy commands yourself; spawn a subagent and take back its conclusion.
 - Tell subagents to return conclusions and structured summaries, not file contents or transcripts — and don't re-quote their long returns.
 
-Model tiering: **Opus** = research + synthesis, **Fable** = review + architecture guru, **Sonnet** = execution swarm. Everything below is a default with a history of working well, not a hard requirement. If the user asks you not to use Fable, use Opus in its place.
+Model tiering: **Opus** = research + synthesis, **Fable** = review + architecture guru, **Sonnet** = execution swarm. Everything below is a default with a history of working well, not a hard requirement. If the user asks you not to use Fable, use the `task-planner` agent in its place.
 
-## Stage 1 — Plan (`model: "opus"`)
+Spawn the Opus stages as `subagent_type: "task-pipeline:task-planner"` with **no** `model` argument: the agent file pins the Opus version, and a `model` argument overrides that pin. Don't substitute `model: "opus"` — that alias resolves to whichever Opus the session itself is running.
+
+## Stage 1 — Plan (`subagent_type: "task-pipeline:task-planner"`)
 
 Spawn a planning agent: deep research, then a high-level architectural plan. No code detail yet — the plan is written to be reviewed in Stage 2. Include multiple options when a real design fork exists.
 
 ## Stage 2 — Review the plan (`model: "fable"`)
 
-Spawn one review agent over the plan. Fable is expensive but extremely good at seeing the whole scope end-to-end — give it full context and instruct it to be adversarial about every plan and option. It must not do its own deep research: if it needs more information, it returns questions and you spawn another Opus agent to answer them. Loop Stage 1 ↔ 2 until plan and reviewer reach consensus.
+Spawn one review agent over the plan. Fable is expensive but extremely good at seeing the whole scope end-to-end — give it full context and instruct it to be adversarial about every plan and option. It must not do its own deep research: if it needs more information, it returns questions and you spawn another `task-planner` agent to answer them. Loop Stage 1 ↔ 2 until plan and reviewer reach consensus.
 
-## Stage 3 — Detail (`model: "opus"`)
+## Stage 3 — Detail (`subagent_type: "task-pipeline:task-planner"`)
 
 Spawn an agent to turn the agreed plan into execution detail: concrete files, ordering, and — where safe — a split into independent units that can run in parallel. It does the legwork for Stage 4.
 

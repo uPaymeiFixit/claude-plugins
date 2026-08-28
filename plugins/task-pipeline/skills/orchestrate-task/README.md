@@ -64,5 +64,5 @@ It's equally usable standalone, outside this pipeline, for reviewing any diff.
 ## Tooling
 
 - The **Workflow** orchestration tool, built into Claude Code — used for the verification review. When unavailable, the skill falls back to plain subagents in the same finder/verifier shape.
-- Access to **Opus**, **Sonnet**, and (optionally) **Fable** models via the Agent tool.
+- Access to **Opus**, **Sonnet**, and (optionally) **Fable** models via the Agent tool. The Opus stages run through the bundled [task-planner agent](../../agents/task-planner.md), which pins the Opus version — the `opus` alias would otherwise follow whichever Opus your session is set to.
 - No external CLIs or MCP servers.
